@@ -1,0 +1,234 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="AlertGen" name="Refactor">
+    <mxGraphModel dx="2929" dy="1870" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1050" pageHeight="960" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="AG" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="AlertGenerator" vertex="1">
+          <mxGeometry height="170" width="280" x="-20" y="-300" as="geometry" />
+        </mxCell>
+        <mxCell id="AGa" parent="AG" style="text;strokeColor=none;fillColor=#EBF2FA;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;" value="-dataStorage: DataStorage&#xa;-triggeredAlerts: List&lt;Alert&gt;&#xa;-strategies: List&lt;AlertStrategy&gt;" vertex="1">
+          <mxGeometry height="60" width="280" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="AGs" parent="AG" style="line;strokeColor=#6c8ebf;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="2" width="280" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="AGm" parent="AG" style="text;strokeColor=none;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;" value="+AlertGenerator(dataStorage: DataStorage)&#xa;+evaluateData(patient: Patient): void&#xa;+getTriggeredAlerts(): List&lt;Alert&gt;&#xa;-triggerAlert(alert: Alert): void" vertex="1">
+          <mxGeometry height="80" width="280" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="AS" parent="1" style="swimlane;fontStyle=3;align=center;startSize=30;fillColor=#e1d5e7;strokeColor=#9673a6;" value="«interface»&#xa;AlertStrategy" vertex="1">
+          <mxGeometry height="74" width="390" x="260" y="-81" as="geometry" />
+        </mxCell>
+        <mxCell id="ASa" parent="AS" style="text;strokeColor=none;fillColor=#EBF2FA;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;" value="" vertex="1">
+          <mxGeometry height="10" width="390" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ASs" parent="AS" style="line;strokeColor=#9673a6;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="2" width="390" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ASm" parent="AS" style="text;strokeColor=none;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;" value="+checkAlert(patient: Patient, records: List&lt;PatientRecord&gt;): List&lt;Alert&gt;" vertex="1">
+          <mxGeometry height="34" width="390" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="DS" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#f5f5f5;strokeColor=#666666;" value="DataStorage" vertex="1">
+          <mxGeometry height="104" width="310" x="360" y="-267" as="geometry" />
+        </mxCell>
+        <mxCell id="DSa" parent="DS" style="text;strokeColor=none;fillColor=#EBF2FA;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;" value="" vertex="1">
+          <mxGeometry height="10" width="310" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="DSs" parent="DS" style="line;strokeColor=#666666;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="2" width="310" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="DSm" parent="DS" style="text;strokeColor=none;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;" value="+addPatientData(id, value, type, ts): void&#xa;+getRecords(patientId, start, end): List&lt;PatientRecord&gt;&#xa;+getAllPatients(): List&lt;Patient&gt;" vertex="1">
+          <mxGeometry height="64" width="310" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="BPS" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="BloodPressureStrategy" vertex="1">
+          <mxGeometry height="144" width="370" x="-160" y="47" as="geometry" />
+        </mxCell>
+        <mxCell id="BPSa" parent="BPS" style="text;strokeColor=none;fillColor=#EBF2FA;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;" value="-factory: AlertFactory" vertex="1">
+          <mxGeometry height="30" width="370" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BPSs" parent="BPS" style="line;strokeColor=#6c8ebf;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="2" width="370" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="BPSm" parent="BPS" style="text;strokeColor=none;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;" value="+checkAlert(patient, records): List&lt;Alert&gt;&#xa;-checkTrend(patientId, records, condition, alerts)&#xa;-checkHypotensiveHypoxemia(patientId, systolic, saturation, alerts)&#xa;-filterByType(records, type): List&lt;PatientRecord&gt;" vertex="1">
+          <mxGeometry height="84" width="370" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="OSS" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="OxygenSaturationStrategy" vertex="1">
+          <mxGeometry height="104" width="280" x="560" y="47" as="geometry" />
+        </mxCell>
+        <mxCell id="OSSa" parent="OSS" style="text;strokeColor=none;fillColor=#EBF2FA;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;" value="-factory: AlertFactory" vertex="1">
+          <mxGeometry height="30" width="280" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="OSSs" parent="OSS" style="line;strokeColor=#6c8ebf;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="2" width="280" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="OSSm" parent="OSS" style="text;strokeColor=none;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;" value="+checkAlert(patient, records): List&lt;Alert&gt;&#xa;-filterByType(records, type): List&lt;PatientRecord&gt;" vertex="1">
+          <mxGeometry height="44" width="280" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="HRS" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="HeartRateStrategy" vertex="1">
+          <mxGeometry height="144" width="280" x="250" y="47" as="geometry" />
+        </mxCell>
+        <mxCell id="HRSa" parent="HRS" style="text;strokeColor=none;fillColor=#EBF2FA;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;" value="-factory: AlertFactory" vertex="1">
+          <mxGeometry height="30" width="280" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="HRSs" parent="HRS" style="line;strokeColor=#6c8ebf;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="2" width="280" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="HRSm" parent="HRS" style="text;strokeColor=none;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;" value="+checkAlert(patient, records): List&lt;Alert&gt;&#xa;-checkECG(patientId, ecgRecords, alerts)&#xa;-checkTriggered(patientId, alertRecords, alerts)&#xa;-filterByType(records, type): List&lt;PatientRecord&gt;" vertex="1">
+          <mxGeometry height="84" width="280" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="AF" parent="1" style="swimlane;fontStyle=3;align=center;startSize=30;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="«abstract»&#xa;AlertFactory" vertex="1">
+          <mxGeometry height="74" width="390" x="-90" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="AFa" parent="AF" style="text;strokeColor=none;fillColor=#EBF2FA;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;" value="" vertex="1">
+          <mxGeometry height="10" width="390" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="AFs" parent="AF" style="line;strokeColor=#6c8ebf;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="2" width="390" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="AFm" parent="AF" style="text;strokeColor=none;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;" value="+createAlert(patientId: String, condition: String, timestamp: long): Alert" vertex="1">
+          <mxGeometry height="32" width="390" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="BPAF" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="BloodPressureAlertFactory" vertex="1">
+          <mxGeometry height="72" width="390" x="-230" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="BPAFa" parent="BPAF" style="text;strokeColor=none;fillColor=#EBF2FA;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;" value="" vertex="1">
+          <mxGeometry height="10" width="390" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BPAFs" parent="BPAF" style="line;strokeColor=#6c8ebf;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="2" width="390" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="BPAFm" parent="BPAF" style="text;strokeColor=none;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;" value="+createAlert(patientId: String, condition: String, timestamp: long): Alert" vertex="1">
+          <mxGeometry height="28" width="390" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="BOAF" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="BloodOxygenAlertFactory" vertex="1">
+          <mxGeometry height="74" width="390" x="450" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="BOAFa" parent="BOAF" style="text;strokeColor=none;fillColor=#EBF2FA;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;" value="" vertex="1">
+          <mxGeometry height="10" width="390" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BOAFs" parent="BOAF" style="line;strokeColor=#6c8ebf;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="2" width="390" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="BOAFm" parent="BOAF" style="text;strokeColor=none;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;" value="+createAlert(patientId: String, condition: String, timestamp: long): Alert" vertex="1">
+          <mxGeometry height="32" width="390" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="ECGAF" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="ECGAlertFactory" vertex="1">
+          <mxGeometry height="74" width="390" x="210" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="ECGAFa" parent="ECGAF" style="text;strokeColor=none;fillColor=#EBF2FA;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;" value="" vertex="1">
+          <mxGeometry height="10" width="390" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ECGAFs" parent="ECGAF" style="line;strokeColor=#6c8ebf;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="2" width="390" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ECGAFm" parent="ECGAF" style="text;strokeColor=none;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;" value="+createAlert(patientId: String, condition: String, timestamp: long): Alert" vertex="1">
+          <mxGeometry height="32" width="390" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="AL" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="Alert" vertex="1">
+          <mxGeometry height="168" width="280" x="-30" y="770" as="geometry" />
+        </mxCell>
+        <mxCell id="ALa" parent="AL" style="text;strokeColor=none;fillColor=#EBF2FA;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;" value="-patientId: String&#xa;-condition: String&#xa;-timestamp: long" vertex="1">
+          <mxGeometry height="60" width="280" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ALs" parent="AL" style="line;strokeColor=#6c8ebf;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="2" width="280" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="ALm" parent="AL" style="text;strokeColor=none;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;" value="+Alert(patientId: String, condition: String, ts: long)&#xa;+getPatientId(): String&#xa;+getCondition(): String&#xa;+getTimestamp(): long" vertex="1">
+          <mxGeometry height="78" width="280" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="BPA" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="BloodPressureAlert" vertex="1">
+          <mxGeometry height="74" width="410" x="-240" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="BPAa" parent="BPA" style="text;strokeColor=none;fillColor=#EBF2FA;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;" value="" vertex="1">
+          <mxGeometry height="10" width="410" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BPAs" parent="BPA" style="line;strokeColor=#6c8ebf;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="2" width="410" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="BPAm" parent="BPA" style="text;strokeColor=none;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;" value="+BloodPressureAlert(patientId: String, condition: String, timestamp: long)" vertex="1">
+          <mxGeometry height="32" width="410" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="BOA" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="BloodOxygenAlert" vertex="1">
+          <mxGeometry height="74" width="400" x="445" y="750" as="geometry" />
+        </mxCell>
+        <mxCell id="BOAa" parent="BOA" style="text;strokeColor=none;fillColor=#EBF2FA;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;" value="" vertex="1">
+          <mxGeometry height="10" width="400" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BOAs" parent="BOA" style="line;strokeColor=#6c8ebf;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="2" width="400" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="BOAm" parent="BOA" style="text;strokeColor=none;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;" value="+BloodOxygenAlert(patientId: String, condition: String, timestamp: long)" vertex="1">
+          <mxGeometry height="32" width="400" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="ECGA" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="ECGAlert" vertex="1">
+          <mxGeometry height="74" width="350" x="230" y="602" as="geometry" />
+        </mxCell>
+        <mxCell id="ECGAa" parent="ECGA" style="text;strokeColor=none;fillColor=#EBF2FA;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;" value="" vertex="1">
+          <mxGeometry height="10" width="350" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ECGAs" parent="ECGA" style="line;strokeColor=#6c8ebf;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="2" width="350" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ECGAm" parent="ECGA" style="text;strokeColor=none;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;" value="+ECGAlert(patientId: String, condition: String, timestamp: long)" vertex="1">
+          <mxGeometry height="32" width="350" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="AG" style="endArrow=open;endFill=0;dashed=1;edgeStyle=orthogonalEdgeStyle;fontSize=11;" target="AS" value="«uses»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="AG" style="endArrow=open;endFill=0;dashed=1;edgeStyle=orthogonalEdgeStyle;fontSize=11;" target="DS" value="«uses»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="BPS" style="endArrow=block;endFill=0;dashed=1;edgeStyle=orthogonalEdgeStyle;" target="AS" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="30" y="-45" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="OSS" style="endArrow=block;endFill=0;dashed=1;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" target="AS" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="700" y="-45" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="HRS" style="endArrow=block;endFill=0;dashed=1;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" target="AS" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="390" y="29" />
+              <mxPoint x="460" y="29" />
+            </Array>
+            <mxPoint x="400" y="119" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="BPAF" style="endArrow=block;endFill=0;edgeStyle=orthogonalEdgeStyle;" target="AF" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="BOAF" style="endArrow=block;endFill=0;edgeStyle=orthogonalEdgeStyle;" target="AF" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="ECGAF" style="endArrow=block;endFill=0;edgeStyle=orthogonalEdgeStyle;" target="AF" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="BPAF" style="endArrow=open;endFill=0;dashed=1;edgeStyle=orthogonalEdgeStyle;fontSize=11;" target="BPA" value="«creates»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" edge="1" parent="1" source="BOAF" style="endArrow=open;endFill=0;dashed=1;edgeStyle=orthogonalEdgeStyle;fontSize=11;" target="BOA" value="«creates»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e11" edge="1" parent="1" source="ECGAF" style="endArrow=open;endFill=0;dashed=1;edgeStyle=orthogonalEdgeStyle;fontSize=11;" target="ECGA" value="«creates»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e12" edge="1" parent="1" source="BPA" style="endArrow=block;endFill=0;edgeStyle=orthogonalEdgeStyle;" target="AL" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e13" edge="1" parent="1" source="BOA" style="endArrow=block;endFill=0;edgeStyle=orthogonalEdgeStyle;" target="AL" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e14" edge="1" parent="1" source="ECGA" style="endArrow=block;endFill=0;edgeStyle=orthogonalEdgeStyle;" target="AL" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

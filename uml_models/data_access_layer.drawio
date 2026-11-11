@@ -1,0 +1,76 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="DataAccess" name="Refactor">
+    <mxGraphModel dx="2170" dy="1029" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1100" pageHeight="750" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="DR" parent="1" style="swimlane;fontStyle=3;align=center;startSize=30;fillColor=#e1d5e7;strokeColor=#9673a6;" value="«interface»&#xa;DataReader" vertex="1">
+          <mxGeometry height="84" width="360" x="-90" y="122" as="geometry" />
+        </mxCell>
+        <mxCell id="DRa" parent="DR" style="text;strokeColor=none;fillColor=#EBF2FA;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;" value="" vertex="1">
+          <mxGeometry height="10" width="360" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="DRs" parent="DR" style="line;strokeColor=#9673a6;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="2" width="360" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="DRm" parent="DR" style="text;strokeColor=none;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;" value="+readData(dataStorage: DataStorage): void&#xa;+connectToServer(serverUri: String, dataStorage: DataStorage)" vertex="1">
+          <mxGeometry height="42" width="360" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="WSC" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#f5f5f5;strokeColor=#666666;" value="WebSocketClient" vertex="1">
+          <mxGeometry height="50" width="240" x="385" as="geometry" />
+        </mxCell>
+        <mxCell id="FDR" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="FileDataReader" vertex="1">
+          <mxGeometry height="136" width="290" x="-55" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="FDRa" parent="FDR" style="text;strokeColor=none;fillColor=#EBF2FA;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;" value="-directory: String" vertex="1">
+          <mxGeometry height="30" width="290" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="FDRs" parent="FDR" style="line;strokeColor=#6c8ebf;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="2" width="290" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FDRm" parent="FDR" style="text;strokeColor=none;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;" value="+FileDataReader(directory: String)&#xa;+readData(dataStorage: DataStorage): void&#xa;-parseLine(line: String, dataStorage: DataStorage)" vertex="1">
+          <mxGeometry height="74" width="290" y="62" as="geometry" />
+        </mxCell>
+        <mxCell id="WSCI" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="WebSocketClientImpl" vertex="1">
+          <mxGeometry height="160" width="350" x="330" y="84" as="geometry" />
+        </mxCell>
+        <mxCell id="WSCIa" parent="WSCI" style="text;strokeColor=none;fillColor=#EBF2FA;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;" value="-dataStorage: DataStorage" vertex="1">
+          <mxGeometry height="30" width="350" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="WSCIs" parent="WSCI" style="line;strokeColor=#6c8ebf;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="2" width="350" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="WSCIm" parent="WSCI" style="text;strokeColor=none;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;" value="+readData(dataStorage: DataStorage): void&#xa;+connectToServer(serverUri: String, dataStorage: DataStorage)&#xa;+onMessage(message: String)&#xa;+onOpen / onClose / onError&#xa;-parseAndStore(message: String)" vertex="1">
+          <mxGeometry height="98" width="350" y="62" as="geometry" />
+        </mxCell>
+        <mxCell id="DS" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;fillColor=#f5f5f5;strokeColor=#666666;" value="DataStorage" vertex="1">
+          <mxGeometry height="104" width="310" x="350" y="336" as="geometry" />
+        </mxCell>
+        <mxCell id="DSa" parent="DS" style="text;strokeColor=none;fillColor=#EBF2FA;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;" value="" vertex="1">
+          <mxGeometry height="10" width="310" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="DSs" parent="DS" style="line;strokeColor=#666666;fillColor=none;" value="" vertex="1">
+          <mxGeometry height="2" width="310" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="DSm" parent="DS" style="text;strokeColor=none;fillColor=#FFFFFF;align=left;verticalAlign=top;spacingLeft=4;overflow=hidden;" value="+addPatientData(id, value, type, ts): void&#xa;+getRecords(patientId, start, end): List&lt;PatientRecord&gt;&#xa;+getInstance(): DataStorage" vertex="1">
+          <mxGeometry height="62" width="310" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="FDR" style="endArrow=block;endFill=0;dashed=1;edgeStyle=orthogonalEdgeStyle;" target="DR" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="WSCI" style="endArrow=block;endFill=0;dashed=1;edgeStyle=orthogonalEdgeStyle;" target="DR" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="WSCI" style="endArrow=block;endFill=0;edgeStyle=orthogonalEdgeStyle;" target="WSC" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="FDR" style="endArrow=open;endFill=0;dashed=1;edgeStyle=orthogonalEdgeStyle;fontSize=11;" target="DS" value="«uses»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="WSCI" style="endArrow=open;endFill=0;dashed=1;edgeStyle=orthogonalEdgeStyle;fontSize=11;" target="DS" value="«uses»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
